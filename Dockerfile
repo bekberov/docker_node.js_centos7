@@ -1,19 +1,14 @@
-
 # Node.js Dockerfile
 
 # Pull base image.
 FROM antik486/centos71
 
-
 # Install Node.js
 RUN yum -y update && \
-    yum -y install \
-           tar \
-           gcc \
-           glibc-devel \
-           make \
-           wget
-           
+    yum install -y wget && \
+    yum groupinstall -y "Development Tools" && \
+    yum clean all
+
 RUN \
   cd /tmp && \
   wget http://nodejs.org/dist/node-latest.tar.gz && \
